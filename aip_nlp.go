@@ -472,10 +472,9 @@ func (client *AipNlp) Address(text string, options map[string]interface{}) strin
 		- to:  	翻译目标语言	不可设置为auto
 		- q: 	请求翻译query
 		- options: 可选参数
-				- confidence: int,取值100-0，不设置时默认为50。该字段用于触发补充解析策略，对置信度在配置值以下的结果，进行补充解析，以提高结果精度。该字段配置会增加服务耗时。经评测，在保证准确率提升效果的前提下，当取值=50时，服务平响增长相对较小。也可根据业务数据评测，决定取值。
 	RETURNS:
 		- string,接口返回消息
-    EXAMPLE:
+	EXAMPLE:
 		- req: {"q":"hello","from":"en","to":"zh"}
 		- res: {
 				"result": {
