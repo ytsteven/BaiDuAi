@@ -4,7 +4,7 @@
 
 # 安装
 
-> go get github.com/iscoderLee/BaiDuAi
+> go get github.com/ytsteven/BaiDuAi
 
 # 使用说明
 
