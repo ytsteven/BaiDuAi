@@ -498,7 +498,7 @@ func (client *AipNlp) Translate(q string, from string, to string, options map[st
 	}
 	options["from"] = from
 	options["to"] = to
-	options["text"] = q
+	options["q"] = q
 	host = NewHttpSend(reqUrl)
 	host.SetSendType("JSON")
 	host.SetBody(options)
