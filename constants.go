@@ -478,6 +478,10 @@ const (
 	ecommentDeployUrl = "https://aip.baidubce.com/rpc/2.0/nlp/v1/ecomment/deploy"
 	// ecommentQueryDeployUrl 消费者评论分析-查询模型服务状态url
 	ecommentQueryDeployUrl = "https://aip.baidubce.com/rpc/2.0/nlp/v1/ecomment/query_deploy"
+
+	// custom add
+	// translate
+	translateUrl = "https://aip.baidubce.com/rpc/2.0/mt/texttrans/v1"
 )
 
 // bodyAnalysis

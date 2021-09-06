@@ -17,7 +17,7 @@ import (
 	"strings"
 )
 
-//Typedefs
+// Typedefs
 
 // AipNlp 自然语言类
 type AipNlp struct {
@@ -455,6 +455,51 @@ func (client *AipNlp) Address(text string, options map[string]interface{}) strin
 		options = map[string]interface{}{}
 	}
 	options["text"] = text
+	host = NewHttpSend(reqUrl)
+	host.SetSendType("JSON")
+	host.SetBody(options)
+	res, err = host.Post()
+	if err != nil {
+		return err.Error()
+	}
+	return string(res)
+}
+
+/*
+	Translate 文本翻译
+	PARAMS:
+		- from: 翻译源语言	可设置为auto
+		- to:  	翻译目标语言	不可设置为auto
+		- q: 	请求翻译query
+		- options: 可选参数
+				- confidence: int,取值100-0，不设置时默认为50。该字段用于触发补充解析策略，对置信度在配置值以下的结果，进行补充解析，以提高结果精度。该字段配置会增加服务耗时。经评测，在保证准确率提升效果的前提下，当取值=50时，服务平响增长相对较小。也可根据业务数据评测，决定取值。
+	RETURNS:
+		- string,接口返回消息
+    EXAMPLE:
+		- req: {"q":"hello","from":"en","to":"zh"}
+		- res: {
+				"result": {
+					"trans_result": [
+						{
+							"dst": "你好",
+							"src": "hello"
+						}
+					],
+					"from": "en",
+					"to": "zh"
+				},
+				"log_id": 1413395986911332328
+				}
+
+*/
+func (client *AipNlp) Translate(q string, from string, to string, options map[string]interface{}) string {
+	reqUrl = GetUrlBuild(translateUrl, client.accessToken)
+	if options == nil {
+		options = map[string]interface{}{}
+	}
+	options["from"] = from
+	options["to"] = to
+	options["text"] = q
 	host = NewHttpSend(reqUrl)
 	host.SetSendType("JSON")
 	host.SetBody(options)
